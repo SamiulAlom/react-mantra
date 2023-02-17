@@ -1,0 +1,17 @@
+.header {
+  background-color: rgba(24, 24, 220, 0.9);
+  font-weight: bold;
+  padding: 5px 0;
+  text-align: center;
+  color: white;
+}
+.data {
+  display: flex;
+  color: brown;
+  padding: 1px;
+  width: 100%;
+  justify-content: space-between;
+}
+h4 {
+  margin: 0;
+}

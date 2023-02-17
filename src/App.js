@@ -1,5 +1,5 @@
-import "./record/record.css";
-import { Start } from "./record/start";
+// import "./record/record.css";
+import Start from "./reduxf/start";
 function App() {
   return (
     <div className="App">

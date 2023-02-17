@@ -2,28 +2,27 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import React, { createContext, useState } from "react";
-import { Head, Foot } from "./header";
+import { Foot, Head } from "./header";
 import { Data } from "./output";
 import { Show } from "./showdata";
+
 export const AppContext = createContext();
 export const Start = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [data, setData] = useState([]);
-  const addData = () => {
-    const add = {
-      name: name,
-      email: email,
-      phone: phone,
-    };
-    const newAddData = [...data, add];
-    setData(newAddData);
-    // setData([...data, { name, email, phone }]);
-    setName("");
-    setEmail("");
-    setPhone("");
+
+  const addData = (e) => {
+    e.preventDefault();
+    if (name && email && phone) {
+      setData([...data, { name: name, email: email, phone: phone }]);
+      setName("");
+      setEmail("");
+      setPhone("");
+    }
   };
+
   return (
     <div className="start">
       <AppContext.Provider value={{ data, setData }}>
