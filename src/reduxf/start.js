@@ -1,7 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { Inc, Dec } from "./reducers/redu";
+import { useDispatch, useSelector } from "react-redux";
+import { Dec, Inc } from "./reducers/redu";
 
 export default function Start() {
   const curState = useSelector((state) => state.number);
@@ -13,6 +12,7 @@ export default function Start() {
         justifyContent: "center",
         alignItems: "center",
         color: "brown",
+        fontSize: "20px",
         flexDirection: "column",
       }}
     >
