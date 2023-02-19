@@ -4,14 +4,16 @@ import TextField from "@mui/material/TextField";
 import React, { createContext, useState } from "react";
 import { Foot, Head } from "./header";
 import { Data } from "./output";
+import { Recover } from "./recover";
 import { Show } from "./showdata";
 
 export const AppContext = createContext();
-export const Start = () => {
+export default function Start() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [data, setData] = useState([]);
+  const [deletedData, setDeletedData] = useState([]);
 
   const addData = (e) => {
     e.preventDefault();
@@ -72,11 +74,27 @@ export const Start = () => {
               email={e.email}
               phone={e.phone}
               key={key}
+              deletedData={deletedData}
+              setDeletedData={setDeletedData}
             />
           );
         })}
         <Foot />
+        {deletedData &&
+          deletedData.map((e, key) => {
+            return (
+              <Recover
+                name={e.name}
+                index={key}
+                email={e.email}
+                phone={e.phone}
+                key={key}
+                deletedData={deletedData}
+                setDeletedData={setDeletedData}
+              />
+            );
+          })}
       </AppContext.Provider>
     </div>
   );
-};
+}
