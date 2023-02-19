@@ -1,13 +1,19 @@
 import AutoDeleteIcon from "@mui/icons-material/AutoDelete";
-import { Recover } from "./recover";
-import { createContext, useContext, useState } from "react";
+// import { Recover } from "./recover";
+import { createContext, useContext } from "react";
 import { AppContext } from "./start";
 
 export const RecoverData = createContext();
 
-export const Show = (props) => {
+export const Show = ({
+  name,
+  email,
+  phone,
+  index,
+  setDeletedData,
+  deletedData,
+}) => {
   const { data, setData } = useContext(AppContext);
-  const [deletedData, setDeletedData] = useState([]);
 
   const removeUser = (e) => {
     const deletedUser = data[e];
@@ -16,18 +22,17 @@ export const Show = (props) => {
     setData([...array]);
     setDeletedData([...deletedData, deletedUser]);
   };
-
   return (
-    <RecoverData.Provider value={{ deletedData, setDeletedData }}>
+    <RecoverData.Provider>
       <div style={{ marginTop: "10px" }} className="data">
         <div className="data-head">
-          <h3 style={{ width: "20%" }}>{props.name}</h3>
-          <h3 style={{ width: "35%" }}>{props.email}</h3>
-          <h3 style={{ width: "20%" }}>{props.phone}</h3>
+          <h3 style={{ width: "20%" }}>{name}</h3>
+          <h3 style={{ width: "35%" }}>{email}</h3>
+          <h3 style={{ width: "20%" }}>{phone}</h3>
 
           <button
             onClick={() => {
-              removeUser(props.index);
+              removeUser(index);
             }}
             style={{
               width: "10%",
@@ -42,17 +47,6 @@ export const Show = (props) => {
           </button>
         </div>
       </div>
-      {deletedData.map((e, key) => {
-        return (
-          <Recover
-            name={e.name}
-            index={key}
-            email={e.email}
-            phone={e.phone}
-            key={key}
-          />
-        );
-      })}
     </RecoverData.Provider>
   );
 };
